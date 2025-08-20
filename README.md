@@ -28,11 +28,11 @@ Information:
 3. Room type must be one of the allowed values
 
 **Endpoints:**
-a. Create a new Reservation: Receives a payload with the required reservation details and returns the ID of the newly created reservation.
-b. List Reservations: Returns all existing reservations (no filters or sorting will be applied at this stage; this functionality will be added later).
-c. Get a Reservation: Retrieves reservation details using filters (ID or guest name).
-d. Update a Reservation: Modifies an existing reservation using the provided payload and returns the updated reservation object.
-e. Delete a Reservation: Removes a reservation by ID and returns a boolean indicating result.
+- Create a new Reservation: Receives a payload with the required reservation details and returns the ID of the newly created reservation.
+- List Reservations: Returns all existing reservations (no filters or sorting will be applied at this stage; this functionality will be added later).
+- Get a Reservation: Retrieves reservation details using filters (ID or guest name).
+- Update a Reservation: Modifies an existing reservation using the provided payload and returns the updated reservation object.
+- Delete a Reservation: Removes a reservation by ID and returns a boolean indicating result.
 
 **Additional:**
 Reservation Creation Events: When a new reservation is created, the system automatically triggers these actions:
