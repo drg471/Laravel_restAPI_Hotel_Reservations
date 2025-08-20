@@ -2,8 +2,7 @@
 
 namespace Tests\Feature\Reservation;
 
-use App\Enums\Reservation\ReservationRoomType;
-use App\Storage\Reservation\ReservationStorage;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Log;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
@@ -12,11 +11,7 @@ class ReservationListRouteTest extends TestCase
 {
     use Reservation_TestHelper;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-        ReservationStorage::clear();
-    }
+    use RefreshDatabase;
 
     #[Test]
     public function it_returns_multiple_reservations()

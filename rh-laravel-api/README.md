@@ -2,6 +2,10 @@
 
 RESTful API for managing hotel room reservations.
 
+<img width="1253" height="845" alt="Image" src="https://github.com/user-attachments/assets/aacafd26-4900-4333-a59f-32d5e24384e4" />
+
+<img width="1503" height="784" alt="Image" src="https://github.com/user-attachments/assets/097cf41f-1904-4247-a6a3-57615cf837e6" />
+
 ## Technologies
 
 -   Laravel 12.20.0
@@ -28,11 +32,11 @@ Information:
 3. Room type must be one of the allowed values
 
 **Endpoints:**
-a. Create a new Reservation: Receives a payload with the required reservation details and returns the ID of the newly created reservation.
-b. List Reservations: Returns all existing reservations (no filters or sorting will be applied at this stage; this functionality will be added later).
-c. Get a Reservation: Retrieves reservation details using filters (ID or guest name).
-d. Update a Reservation: Modifies an existing reservation using the provided payload and returns the updated reservation object.
-e. Delete a Reservation: Removes a reservation by ID and returns a boolean indicating result.
+- Create a new Reservation: Receives a payload with the required reservation details and returns the ID of the newly created reservation.
+- List Reservations: Returns all existing reservations (no filters or sorting will be applied at this stage; this functionality will be added later).
+- Get a Reservation: Retrieves reservation details using filters (ID or guest name).
+- Update a Reservation: Modifies an existing reservation using the provided payload and returns the updated reservation object.
+- Delete a Reservation: Removes a reservation by ID and returns a boolean indicating result.
 
 **Additional:**
 Reservation Creation Events: When a new reservation is created, the system automatically triggers these actions:
@@ -46,16 +50,17 @@ Exception Handling:
 - Centralized exception handling is implemented using Laravel's `Handler` class to manage errors gracefully and return appropriate responses.
 
 ## API Endpoints
-- `/hotels` - List all hotels.
-- `/hotels/{id}` - Show a specific hotel.
-- `/rooms` - List all rooms.
-- `/rooms/{id}` - Show a specific room.
-- `/reservations` - List all reservations.
-- `/reservations/{id}` - Show a specific reservation.
+- `/reservations/new` - Create a new reservation.
+- `/reservations/all` - List all reservations.
+- `/reservations/find` - Find reservations by id and/or guest name.
+- `/reservations/update` - Update a specific reservation..
+- `reservations/delete/{id}` - Delete a specific reservation.
 
 ## Setup / Installation
 
-Follow these steps to run the Hotel Reservation API locally:
+Follow these steps to run the Hotel Reservation API locally with Docker:
+
+---
 
 ### 1. Clone the repository
 ```bash
@@ -63,40 +68,40 @@ git clone <repository-url>
 cd <repository-folder>
 ```
 
-### 2. Setup environment
-- Copy the example `.env` file:
+### 2. Build and start containers
+Run the following command inside the project folder:
 ```bash
-cp .env.example .env
-```
-- Configure your database connection in `.env`:
-```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=rh-l-api
+docker-compose up -d --build
 ```
 
-### 3. Create the database
-Make sure MySQL is running and create the database defined in `.env`:
-```sql
-CREATE DATABASE rh-l-api;
+### 3. Run migrations
+Execute Laravel database migrations inside the container:
+```bash
+docker exec -it docker_rh-laravel-api php artisan migrate
 ```
 
-### 4. Run migrations
+### 4. Up project
+Execute Laravel database migrations inside the container:
 ```bash
-php artisan migrate
+docker-compose up -d
+docker exec -it docker_rh-laravel-api bash
+php artisan serve –host=0.0.0.0 –port=8000 
 ```
 
-### 5. Serve the application
-```bash
-php artisan serve
-```
-The API will be available at: `http://127.0.0.1:8000`
+### 5. Access the application
+- API will be available at: `http://localhost:8000`  
 
-### 6. Run tests
+- phpMyAdmin will be available at: `http://localhost:8080`  
+
+
+---
+
+### 6. Stop the project
 ```bash
-php artisan test
+docker-compose down
 ```
+
+---
 
 ## Requests & Responses examples Endpoints
 
@@ -308,41 +313,33 @@ tests/Feature/Reservation/
 
 #### 1. ReservationCreateRouteTest
 ```bash
-php artisan test --filter=ReservationCreateRouteTest
+docker exec -it docker_rh-laravel-api php artisan test --filter=ReservationCreateRouteTest
 ```
-
-|------------------------------------------|
 | Test Case                                | 
 |------------------------------------------|
 | `it_creates_a_reservation()`             | 
 | `it_fails_to_create_with_invalid_data()` | 
-¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
 
 #### 2. ReservationDeleteRouteTest  
 
 * DELETE `/reservations/delete/{id}`
 
 ```bash
-php artisan test --filter=ReservationDeleteRouteTest
+docker exec -it docker_rh-laravel-api php artisan test --filter=ReservationDeleteRouteTest
 ```
-
-|-------------------------------------------------|
-| Test Case                                       |                                                            
+| Test Case                                       |                                             
 |-------------------------------------------------|
 | `it_deletes_a_reservation()`                    |
 | `it_fails_to_delete_non_existing_reservation()` |
 | `it_fails_with_invalid_id()`                    |
-¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
 
 #### 3. ReservationFindRouteTest
 
 * GET `/reservations/find`
 
 ```bash
-php artisan test --filter=ReservationFindRouteTest
+docker exec -it docker_rh-laravel-api php artisan test --filter=ReservationFindRouteTest
 ```
-
-|------------------------------------------------------|
 | Test Case                                            |
 |------------------------------------------------------|
 | `it_finds_reservations_by_id()`                      |
@@ -350,46 +347,33 @@ php artisan test --filter=ReservationFindRouteTest
 | `it_finds_reservations_by_id_and_guestName()`        |
 | `it_fails_when_reservation_not_found_by_fake_id()`   |
 | `it_fails_when_reservation_not_found_by_fake_name()` |
-¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
 
 #### 4. ReservationUpdateRouteTest
 
 * PUT `/reservations/update`
 
 ```bash
-php artisan test --filter=ReservationUpdateRouteTest
+docker exec -it docker_rh-laravel-api php artisan test --filter=ReservationUpdateRouteTest
 ```
-
-|------------------------------------------|
 | Test Case                                |
 |------------------------------------------|
 | `it_updates_the_created_reservation()`   |
 | `it_fails_to_update_with_invalid_data()` |
-¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+
 
 #### 5. ReservationListRouteTest
 
 * GET `/reservations/all`
 
 ```bash
-php artisan test --filter=ReservationListRouteTest
+docker exec -it docker_rh-laravel-api php artisan test --filter=ReservationListRouteTest
 ```
-
-|--------------------------------------------------------|
 | Test Case                                              | 
 |--------------------------------------------------------|
 | `it_returns_multiple_reservations()`                   | 
 | `it_returns_single_reservation_when_only_one_exists()` | 
 | `it_returns_empty_list_when_no_reservations_exist()`   | 
 | `it_returns_reservations_with_expected_fields()`       | 
-¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
-
-### Running Tests
-
-**Run all reservation tests:**
-```bash
-php artisan test tests/Feature/ReservationRoutesTest.php
-```
 
 ---
 

@@ -58,7 +58,9 @@ Exception Handling:
 
 ## Setup / Installation
 
-Follow these steps to run the Hotel Reservation API locally:
+Follow these steps to run the Hotel Reservation API locally with Docker:
+
+---
 
 ### 1. Clone the repository
 ```bash
@@ -66,40 +68,40 @@ git clone <repository-url>
 cd <repository-folder>
 ```
 
-### 2. Setup environment
-- Copy the example `.env` file:
+### 2. Build and start containers
+Run the following command inside the project folder:
 ```bash
-cp .env.example .env
-```
-- Configure your database connection in `.env`:
-```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=rh-l-api
+docker-compose up -d --build
 ```
 
-### 3. Create the database
-Make sure MySQL is running and create the database defined in `.env`:
-```sql
-CREATE DATABASE rh-l-api;
+### 3. Run migrations
+Execute Laravel database migrations inside the container:
+```bash
+docker exec -it docker_rh-laravel-api php artisan migrate
 ```
 
-### 4. Run migrations
+### 4. Up project
+Execute Laravel database migrations inside the container:
 ```bash
-php artisan migrate
+docker-compose up -d
+docker exec -it docker_rh-laravel-api bash
+php artisan serve –host=0.0.0.0 –port=8000 
 ```
 
-### 5. Serve the application
-```bash
-php artisan serve
-```
-The API will be available at: `http://127.0.0.1:8000`
+### 5. Access the application
+- API will be available at: `http://localhost:8000`  
 
-### 6. Run tests
+- phpMyAdmin will be available at: `http://localhost:8080`  
+
+
+---
+
+### 6. Stop the project
 ```bash
-php artisan test
+docker-compose down
 ```
+
+---
 
 ## Requests & Responses examples Endpoints
 
@@ -311,7 +313,7 @@ tests/Feature/Reservation/
 
 #### 1. ReservationCreateRouteTest
 ```bash
-php artisan test --filter=ReservationCreateRouteTest
+docker exec -it docker_rh-laravel-api php artisan test --filter=ReservationCreateRouteTest
 ```
 | Test Case                                | 
 |------------------------------------------|
@@ -323,7 +325,7 @@ php artisan test --filter=ReservationCreateRouteTest
 * DELETE `/reservations/delete/{id}`
 
 ```bash
-php artisan test --filter=ReservationDeleteRouteTest
+docker exec -it docker_rh-laravel-api php artisan test --filter=ReservationDeleteRouteTest
 ```
 | Test Case                                       |                                             
 |-------------------------------------------------|
@@ -336,7 +338,7 @@ php artisan test --filter=ReservationDeleteRouteTest
 * GET `/reservations/find`
 
 ```bash
-php artisan test --filter=ReservationFindRouteTest
+docker exec -it docker_rh-laravel-api php artisan test --filter=ReservationFindRouteTest
 ```
 | Test Case                                            |
 |------------------------------------------------------|
@@ -351,7 +353,7 @@ php artisan test --filter=ReservationFindRouteTest
 * PUT `/reservations/update`
 
 ```bash
-php artisan test --filter=ReservationUpdateRouteTest
+docker exec -it docker_rh-laravel-api php artisan test --filter=ReservationUpdateRouteTest
 ```
 | Test Case                                |
 |------------------------------------------|
@@ -364,7 +366,7 @@ php artisan test --filter=ReservationUpdateRouteTest
 * GET `/reservations/all`
 
 ```bash
-php artisan test --filter=ReservationListRouteTest
+docker exec -it docker_rh-laravel-api php artisan test --filter=ReservationListRouteTest
 ```
 | Test Case                                              | 
 |--------------------------------------------------------|
@@ -372,13 +374,6 @@ php artisan test --filter=ReservationListRouteTest
 | `it_returns_single_reservation_when_only_one_exists()` | 
 | `it_returns_empty_list_when_no_reservations_exist()`   | 
 | `it_returns_reservations_with_expected_fields()`       | 
-
-### Running Tests
-
-**Run all reservation tests:**
-```bash
-php artisan test tests/Feature/ReservationRoutesTest.php
-```
 
 ---
 

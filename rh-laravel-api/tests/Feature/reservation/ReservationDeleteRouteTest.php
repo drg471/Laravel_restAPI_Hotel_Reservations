@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Reservation;
 
-use App\Storage\Reservation\ReservationStorage;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use PHPUnit\Framework\Attributes\Test;
@@ -12,11 +12,7 @@ class ReservationDeleteRouteTest extends TestCase
 {
     use Reservation_TestHelper;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-        ReservationStorage::clear();
-    }
+    use RefreshDatabase;
 
     #[Test]
     public function it_deletes_a_reservation()

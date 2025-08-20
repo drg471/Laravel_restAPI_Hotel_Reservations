@@ -3,18 +3,14 @@
 namespace Tests\Feature\Reservation;
 
 use App\Enums\Reservation\ReservationRoomType;
-use App\Storage\Reservation\ReservationStorage;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Log;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class ReservationCreateRouteTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-        ReservationStorage::clear();
-    }
+    use RefreshDatabase;
 
     #[Test]
     public function it_creates_a_reservation()
@@ -39,7 +35,10 @@ class ReservationCreateRouteTest extends TestCase
 
         $reservationId = $response->json()['data'];
 
-        $this->assertArrayHasKey($reservationId, ReservationStorage::all());
+        $this->assertDatabaseHas('reservations', [
+            'guestName' => 'Sergio Gómez',
+            'guestEmail' => 'sgomez@example.com',
+        ]);
     }
 
     #[Test]

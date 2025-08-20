@@ -3,7 +3,7 @@
 namespace Tests\Feature\Reservation;
 
 use App\Enums\Reservation\ReservationRoomType;
-use App\Storage\Reservation\ReservationStorage;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
 use PHPUnit\Framework\Attributes\Test;
@@ -13,11 +13,7 @@ class ReservationUpdateRouteTest extends TestCase
 {
     use Reservation_TestHelper;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-        ReservationStorage::clear();
-    }
+    use RefreshDatabase;
 
     #[Test]
     public function it_updates_the_created_reservation()

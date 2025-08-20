@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Reservation;
 
-use App\Storage\Reservation\ReservationStorage;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Log;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
@@ -11,11 +11,7 @@ class ReservationFindRouteTest extends TestCase
 {
     use Reservation_TestHelper;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-        ReservationStorage::clear();
-    }
+    use RefreshDatabase;
 
     #[Test]
     public function it_finds_reservations_by_id()
