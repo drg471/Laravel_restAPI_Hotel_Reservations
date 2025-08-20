@@ -2,9 +2,9 @@
 
 RESTful API for managing hotel room reservations.
 
-<img width="1253" height="845" alt="Image" src="https://github.com/user-attachments/assets/aacafd26-4900-4333-a59f-32d5e24384e4" />
+<img width="1253" height="845" alt="Image" src="https://github.com/user-attachments/assets/ab0baccb-1a65-4776-9930-dc34610e3ad2" />
 
-<img width="1503" height="784" alt="Image" src="https://github.com/user-attachments/assets/097cf41f-1904-4247-a6a3-57615cf837e6" />
+<img width="1503" height="784" alt="Image" src="https://github.com/user-attachments/assets/84dc863c-8228-4ded-a963-1cd986617dd4" />
 
 ## Technologies
 
