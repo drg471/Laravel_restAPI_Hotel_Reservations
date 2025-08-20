@@ -35,6 +35,7 @@ Information:
 - Delete a Reservation: Removes a reservation by ID and returns a boolean indicating result.
 
 **Additional:**
+
 Reservation Creation Events: When a new reservation is created, the system automatically triggers these actions:
 - Generates the reservation invoice
 - Sends a confirmation email to the guest
