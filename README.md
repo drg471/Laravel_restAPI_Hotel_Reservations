@@ -57,7 +57,7 @@ Exception Handling:
 - `/reservations/update` - Update a specific reservation..
 - `reservations/delete/{id}` - Delete a specific reservation.
 
-## Setup / Installation <img width="100" height="100" alt="Image" src="https://www.opc-router.com/wp-content/uploads/2023/07/Docker_150x150px-01-01-01-400x400.png" />
+## Setup / Installation <img width="50" height="50" alt="Image" src="https://www.opc-router.com/wp-content/uploads/2023/07/Docker_150x150px-01-01-01-400x400.png" />
 
 Follow these steps to run the Hotel Reservation API locally with Docker:
 
