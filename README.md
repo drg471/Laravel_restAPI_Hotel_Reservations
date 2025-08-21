@@ -57,7 +57,7 @@ Exception Handling:
 - `/reservations/update` - Update a specific reservation..
 - `reservations/delete/{id}` - Delete a specific reservation.
 
-## Setup / Installation <img width="50" height="50" alt="Image" src="https://www.opc-router.com/wp-content/uploads/2023/07/Docker_150x150px-01-01-01-400x400.png" />
+## Setup / Installation <img width="50" height="50" alt="Image" style="border-radius: 50%;" src="https://wiki.coreelec.org/_media/coreelec:docker.png?cache="/>
 
 Follow these steps to run the Hotel Reservation API locally with Docker:
 
@@ -65,14 +65,14 @@ Follow these steps to run the Hotel Reservation API locally with Docker:
 
 ### 1. Clone the repository
 ```bash
-git clone <repository-url>
-cd <repository-folder>
+git clone https://github.com/drg471/Laravel_restAPI_Hotel_Reservations.git
+cd Laravel_restAPI_Hotel_Reservations
 ```
 
 ### 2. Build and start containers
 Run the following command inside the project folder:
 ```bash
-docker-compose up -d --build
+docker-compose build
 ```
 
 ### 3. Run migrations
@@ -85,15 +85,11 @@ docker exec -it docker_rh-laravel-api php artisan migrate
 Execute Laravel database migrations inside the container:
 ```bash
 docker-compose up -d
-docker exec -it docker_rh-laravel-api bash
-php artisan serve –host=0.0.0.0 –port=8000 
 ```
 
 ### 5. Access the application
 - API will be available at: `http://localhost:8000`  
-
 - phpMyAdmin will be available at: `http://localhost:8080`  
-
 
 ---
 
