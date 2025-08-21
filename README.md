@@ -383,6 +383,5 @@ You can test the API endpoints using the following Postman collection URLs with 
 3. `{{baseURL}}/api/reservations/find` – Search/filter reservations (GET, use query params like ?user_id=1)
 4. `{{baseURL}}/api/reservations/update` – Update a reservation (PUT, include reservation_id in body)
 5. `{{baseURL}}/api/reservations/delete/{id}` – Delete a reservation by ID (DELETE, replace {id})
-6. `{{baseURL}}/api/reservations/clear-storage` – Clear all reservation data 
 
 ---
