@@ -57,7 +57,7 @@ Exception Handling:
 - `/reservations/update` - Update a specific reservation..
 - `reservations/delete/{id}` - Delete a specific reservation.
 
-## Setup / Installation <img width="100" height="100" alt="Image" style="border-radius: 50%;" src="https://wiki.coreelec.org/_media/coreelec:docker.png?cache="/>
+## Setup / Installation <img width="120" height="120" alt="Image" style="border-radius: 50%;" src="https://wiki.coreelec.org/_media/coreelec:docker.png?cache="/>
 
 Follow these steps to run the Hotel Reservation API locally with Docker:
 
