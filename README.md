@@ -30,6 +30,7 @@ Information:
 1. Check-in date must be at least 1 hour after current date
 2. Maximum stay duration is 30 days
 3. Room type must be one of the allowed values
+4. Create, update, and delete operations are only allowed during operating hours: 10:00h – 22:00h
 
 **Endpoints:**
 - Create a new Reservation: Receives a payload with the required reservation details and returns the ID of the newly created reservation.
