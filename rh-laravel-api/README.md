@@ -2,9 +2,9 @@
 
 RESTful API for managing hotel room reservations.
 
-<img width="1253" height="845" alt="Image" src="https://github.com/user-attachments/assets/aacafd26-4900-4333-a59f-32d5e24384e4" />
+<img width="1253" height="845" alt="Image" src="https://github.com/user-attachments/assets/ab0baccb-1a65-4776-9930-dc34610e3ad2" />
 
-<img width="1503" height="784" alt="Image" src="https://github.com/user-attachments/assets/097cf41f-1904-4247-a6a3-57615cf837e6" />
+<img width="1503" height="784" alt="Image" src="https://github.com/user-attachments/assets/84dc863c-8228-4ded-a963-1cd986617dd4" />
 
 ## Technologies
 
@@ -39,6 +39,7 @@ Information:
 - Delete a Reservation: Removes a reservation by ID and returns a boolean indicating result.
 
 **Additional:**
+
 Reservation Creation Events: When a new reservation is created, the system automatically triggers these actions:
 - Generates the reservation invoice
 - Sends a confirmation email to the guest
@@ -56,7 +57,7 @@ Exception Handling:
 - `/reservations/update` - Update a specific reservation..
 - `reservations/delete/{id}` - Delete a specific reservation.
 
-## Setup / Installation
+## Setup / Installation <img width="120" height="120" alt="Image" style="border-radius: 50%;" src="https://wiki.coreelec.org/_media/coreelec:docker.png?cache="/>
 
 Follow these steps to run the Hotel Reservation API locally with Docker:
 
@@ -64,14 +65,14 @@ Follow these steps to run the Hotel Reservation API locally with Docker:
 
 ### 1. Clone the repository
 ```bash
-git clone <repository-url>
-cd <repository-folder>
+git clone https://github.com/drg471/Laravel_restAPI_Hotel_Reservations.git
+cd Laravel_restAPI_Hotel_Reservations
 ```
 
 ### 2. Build and start containers
 Run the following command inside the project folder:
 ```bash
-docker-compose up -d --build
+docker-compose build
 ```
 
 ### 3. Run migrations
@@ -84,15 +85,11 @@ docker exec -it docker_rh-laravel-api php artisan migrate
 Execute Laravel database migrations inside the container:
 ```bash
 docker-compose up -d
-docker exec -it docker_rh-laravel-api bash
-php artisan serve –host=0.0.0.0 –port=8000 
 ```
 
 ### 5. Access the application
 - API will be available at: `http://localhost:8000`  
-
 - phpMyAdmin will be available at: `http://localhost:8080`  
-
 
 ---
 
@@ -386,6 +383,5 @@ You can test the API endpoints using the following Postman collection URLs with 
 3. `{{baseURL}}/api/reservations/find` – Search/filter reservations (GET, use query params like ?user_id=1)
 4. `{{baseURL}}/api/reservations/update` – Update a reservation (PUT, include reservation_id in body)
 5. `{{baseURL}}/api/reservations/delete/{id}` – Delete a reservation by ID (DELETE, replace {id})
-6. `{{baseURL}}/api/reservations/clear-storage` – Clear all reservation data 
 
 ---

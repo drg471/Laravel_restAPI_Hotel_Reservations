@@ -24,12 +24,15 @@ class ReservationService
     public function createNewReservation($data)
     {
         try {
-            $data = array_merge($data, [
-                'checkInDate' => now()->addHour(),
-                'checkOutDate' => empty($data['checkOutDate'])
-                    ? now()->addDays(30)
-                    : Carbon::parse($data['checkOutDate'])->format('Y-m-d H:i:s'),
-            ]);
+            $data = array_merge(
+                $data,
+                [
+                    'checkInDate' => now()->addHour(),
+                    'checkOutDate' => empty($data['checkOutDate'])
+                        ? now()->addDays(30)
+                        : Carbon::parse($data['checkOutDate'])->format('Y-m-d H:i:s'),
+                ]
+            );
 
             $newReservationCreated = $this->reservationRepository->create($data);
 

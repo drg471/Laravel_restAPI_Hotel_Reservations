@@ -5,11 +5,12 @@ services:
       dockerfile: Dockerfile
     container_name: docker_rh-laravel-api
     ports:
-      - "8000:80"
+      - "8000:8000"           # Laravel accesible desde http://localhost:8000
     volumes:
       - .:/var/www/html
     depends_on:
       - db
+    command: php artisan serve --host=0.0.0.0 --port=8000
 
   db:
     image: mysql:8
@@ -19,16 +20,15 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       MYSQL_DATABASE: rh-l-api
     ports:
-      - "3306:3306"
+      - "3306:3306"           # MySQL accesible desde tu máquina local
     volumes:
       - db_data:/var/lib/mysql
-
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     restart: always
     ports:
-      - "8080:80"
+      - "8080:80"             # phpMyAdmin accesible desde http://localhost:8080
     environment:
       PMA_HOST: db
       PMA_USER: root
